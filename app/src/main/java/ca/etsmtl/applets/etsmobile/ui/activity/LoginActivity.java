@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
+import com.crashlytics.android.answers.LoginEvent;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.squareup.picasso.Picasso;
@@ -232,12 +235,15 @@ public class LoginActivity extends AccountAuthenticatorActivity implements Reque
         if (o != null) {
             Etudiant etudiant = (Etudiant) o;
             if (etudiant.erreur != null) {
+
+                Answers.getInstance().logLogin(new LoginEvent().putSuccess(false));
+
                 mPasswordView.setError(getString(R.string.error_invalid_pwd));
                 mPasswordView.requestFocus();
             } else {
                 ApplicationManager.userCredentials = userCredentials;
                 TodayWidgetProvider.updateAllWidgets(this);
-
+                Answers.getInstance().logLogin(new LoginEvent().putSuccess(true));
                 String accountName = userCredentials.getUsername();
                 String accountPassword = userCredentials.getPassword();
 
@@ -257,6 +263,7 @@ public class LoginActivity extends AccountAuthenticatorActivity implements Reque
         } else {
             mPasswordView.setError(getString(R.string.error_invalid_email));
             mPasswordView.requestFocus();
+            Answers.getInstance().logLogin(new LoginEvent().putSuccess(false));
         }
     }
 

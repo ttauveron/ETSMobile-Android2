@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
+
 import ca.etsmtl.applets.etsmobile.views.LoadingView;
 import ca.etsmtl.applets.etsmobile2.R;
 
@@ -25,6 +28,8 @@ public abstract class BaseFragment extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+
+		Answers.getInstance().logContentView(new ContentViewEvent().putContentName(this.getClass().getSimpleName()));
 
         loadingView = (LoadingView) container.findViewById(R.id.loadingView);
 		if (loadingView != null) {

@@ -191,7 +191,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="" />
+            android:value="3a6ebcc2df94f41421cb0cecec10b5c96bcec7c4" />
 
         <service
             android:name="ca.etsmtl.applets.etsmobile.service.WearService">
