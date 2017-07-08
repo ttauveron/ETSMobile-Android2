@@ -12,6 +12,8 @@ import android.preference.PreferenceManager;
 import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.sql.SQLException;
 
 import ca.etsmtl.applets.etsmobile.db.DatabaseHelper;
@@ -24,6 +26,7 @@ import ca.etsmtl.applets.etsmobile.util.NoteManager;
 import ca.etsmtl.applets.etsmobile.util.ProfilManager;
 import ca.etsmtl.applets.etsmobile.util.SecurePreferences;
 import ca.etsmtl.applets.etsmobile.widget.TodayWidgetProvider;
+import io.fabric.sdk.android.Fabric;
 
 public class ApplicationManager extends Application {
 
@@ -44,7 +47,7 @@ public class ApplicationManager extends Application {
         createDatabaseTables();
 
 //        SupportKit.init(this, getString(R.string.credentials_supportkit));
-//        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
 
         AccountManager accountManager = AccountManager.get(this);
         Account[] accounts = accountManager.getAccountsByType(Constants.ACCOUNT_TYPE);

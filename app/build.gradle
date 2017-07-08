@@ -8,7 +8,7 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
-//apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -73,7 +73,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
 
     compile 'com.android.support:support-v4:25.3.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.3.2@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
     compile 'com.google.android.gms:play-services-gcm:10.0.1'
